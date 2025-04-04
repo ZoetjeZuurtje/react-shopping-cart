@@ -1,0 +1,7 @@
+.shop-item {
+  width: fit-content;
+  text-align: center;
+}
+.shop-item .price {
+  text-align: end;
+}
