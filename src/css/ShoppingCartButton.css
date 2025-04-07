@@ -1,0 +1,30 @@
+#shopping-cart-button {
+  position: relative;
+}
+
+#shopping-cart-popup {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 400px;
+  background-color: white;
+  overflow: hidden;
+  &.hidden {
+    visibility: hidden;  
+  }
+}
+
+.shopping-cart-item + .shopping-cart-item {
+  border-top: black solid 1px;
+}
+#shopping-cart-popup > .shopping-cart-item > img {
+  height: 3rem;
+}
+#shopping-cart-popup > .shopping-cart-item > input {
+  width: 3rem;
+}
+#shopping-cart-popup > .shopping-cart-item {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}

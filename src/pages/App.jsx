@@ -1,5 +1,4 @@
 import logo from '/vite.svg'
-import { Link } from 'react-router-dom'
 import '../css/App.css'
 import '../css/Header.css'
 import '../css/ShopItem.css'
@@ -7,17 +6,43 @@ import '../css/Shop.css'
 import { useEffect, useState } from 'react'
 
 import ShopItem from '../components/ShopItem'
-
+import SearchBar from '../components/SearchBar'
+import ShoppingCartButton from '../components/ShoppingCartButton'
+import { Link } from 'react-router-dom'
 
 
 function App() {
   const [products, setProducts] = useState([])
+  const [shoppingCart, setShoppingCart] = useState([])
+
+  const createRemoveThisFromCart = product => () => {
+    const indexOfProduct = shoppingCart.indexOf(product)
+    const newProducts = [...shoppingCart.slice(0, indexOfProduct), ...shoppingCart.slice(indexOfProduct + 1)];
+    setShoppingCart(newProducts);
+  }
+  const createModifyThisFromCart = product => property => value =>{
+    const indexOfProduct = shoppingCart.indexOf(product)
+    const newProduct = {...product, [property]: value}
+    const newProductArray = [...shoppingCart.slice(0, indexOfProduct), newProduct, ...shoppingCart.slice(indexOfProduct + 1)];
+    setShoppingCart(newProductArray);
+  }
+  const addToCart = product => () => {
+    const shoppingCartItem = {
+      name: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    }
+    const newShoppingCart = [...shoppingCart, shoppingCartItem]
+    setShoppingCart(newShoppingCart);
+  }
+
 
   useEffect(() => {
     try {
       fetch('https://fakestoreapi.com/products?limit=20')
-        .then(response => response.json())
-        .then(data => setProducts(data));
+      .then(response => response.json())
+      .then(data => setProducts(data));
     } catch (error) {
       console.error('Error fetching products:', error);
     }
@@ -26,14 +51,9 @@ function App() {
   return (
     <>
       <header>
-        <img src={logo} alt="Shopping Enterprises" />
-        <div>
-          <label htmlFor="search-bar">
-            <span>🔍</span>
-            <input type="search" name="search-bar" id="" placeholder='Zoeken naar...' />
-          </label>
-        </div>
-        <button>🛒</button>
+        <Link to={'/'}><img src={logo} alt={'Back to home'} /></Link>
+        <SearchBar />
+        <ShoppingCartButton shoppingCart={shoppingCart} removerFunction={createRemoveThisFromCart} modifierFunction={createModifyThisFromCart} />
       </header>
       <aside>
         <div className='filter'>
@@ -65,9 +85,10 @@ function App() {
           products.map(product => (<ShopItem 
             key={product.id}
             productLink={product.link}
-            productName={product.name}
+            productName={product.title}
             productPrice={product.price}
             productImage={product.image}
+            addToCart={addToCart(product)}
             />))
         }
       </main>
