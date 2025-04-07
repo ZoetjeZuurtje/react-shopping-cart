@@ -5,3 +5,16 @@
 .shop-item .price {
   text-align: end;
 }
+.shop-item > .product-image {
+  width: 150px;
+  height: 200px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.shop-item {
+  background-color: lightgrey;
+  padding: 20px;
+}

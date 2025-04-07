@@ -4,8 +4,24 @@ import '../css/App.css'
 import '../css/Header.css'
 import '../css/ShopItem.css'
 import '../css/Shop.css'
+import { useEffect, useState } from 'react'
+
+import ShopItem from '../components/ShopItem'
+
+
 
 function App() {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    try {
+      fetch('https://fakestoreapi.com/products?limit=20')
+        .then(response => response.json())
+        .then(data => setProducts(data));
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  })
 
   return (
     <>
@@ -45,63 +61,15 @@ function App() {
         </div>
       </aside>
       <main className='shop'>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-        <div className="shop-item">
-          <a href="">
-            <img src="https://placehold.co/150" alt="" />
-          </a>
-          <hr />
-          <h2>Product naam</h2>
-          <p className='price'>€ 99,99</p>
-        </div>
-
+        {
+          products.map(product => (<ShopItem 
+            key={product.id}
+            productLink={product.link}
+            productName={product.name}
+            productPrice={product.price}
+            productImage={product.image}
+            />))
+        }
       </main>
     </>
   )
