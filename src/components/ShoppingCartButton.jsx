@@ -2,10 +2,10 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../css/ShoppingCartButton.css';
 
+
 function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction }) {
   const [isExpanded, setExpanded] = useState(false);
   const toggleExpanded = () => setExpanded(!isExpanded);
-
   
   return (
     <div id={'shopping-cart-button'}>
@@ -20,7 +20,7 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
               return modifierFunction(item)('quantity')(event.target.value)
             };
             return (
-              <div className='shopping-cart-item'>
+              <div key={item.key} className='shopping-cart-item'>
                 <img src={item.image} alt="" />
                 <h3>{item.name}</h3>
                 <input type="number" value={item['quantity']} onChange={updateQuantity} />

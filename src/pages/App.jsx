@@ -27,10 +27,18 @@ function App() {
     setShoppingCart(newProductArray);
   }
   const addToCart = product => () => {
+    const index = shoppingCart.findIndex(item => item.key === product.id)
+    if (index != -1) {
+      const item = shoppingCart.at(index);
+      let copy = [...shoppingCart.slice(0, index), {...item, quantity: +item.quantity + 1}, ...shoppingCart.slice(index + 1)];
+      setShoppingCart(copy);
+      return
+    }
     const shoppingCartItem = {
       name: product.title,
       price: product.price,
       image: product.image,
+      key: product.id,
       quantity: 1
     }
     const newShoppingCart = [...shoppingCart, shoppingCartItem]
@@ -46,7 +54,7 @@ function App() {
     } catch (error) {
       console.error('Error fetching products:', error);
     }
-  })
+  }, [])
 
   return (
     <>
