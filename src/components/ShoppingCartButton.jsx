@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../css/ShoppingCartButton.css';
+import { Link } from 'react-router-dom';
 
 
 function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction }) {
@@ -9,7 +10,7 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
   
   return (
     <div id={'shopping-cart-button'}>
-      <button onClick={toggleExpanded}>Shopping Cart</button>
+      <button onClick={toggleExpanded}>🛒</button>
       <div className={isExpanded ? 'hidden' : ''} id={'shopping-cart-popup'}>
         {
           shoppingCart.map(item => {
@@ -23,12 +24,15 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
               <div key={item.key} className='shopping-cart-item'>
                 <img src={item.image} alt="" />
                 <h3>{item.name}</h3>
-                <input type="number" value={item['quantity']} onChange={updateQuantity} />
-                <button onClick={removeFromCart}>Delete</button>
+                <div>
+                  <input type="number" value={item['quantity']} onChange={updateQuantity} />
+                  <button className='delete-button' onClick={removeFromCart}>Delete</button>
+                </div>
               </div>
             )
           })
         }
+        <Link className={'checkout-link'} to={'checkout'}>-&gt; Go to checkout</Link>
       </div>
     </div>
   )

@@ -9,11 +9,8 @@ function ShopItem({productLink, productImage, productName, productPrice, addToCa
   return  <div className="shop-item">
             <Link to={productLink} style={{backgroundImage: `url(${productImage})` }} className={'product-image'} />
             <hr />
-            <h2>{productName}</h2>
-            <div>
-              <p className='price'>€ {productPrice}</p>
-              <button onClick={addToCart}></button>
-            </div>
+            <h2>{productName.length > 20 ? productName.slice(0, 17).trim() + '...' : productName}</h2>
+            <button onClick={addToCart}>€ {productPrice}</button>
           </div>;
 }
 

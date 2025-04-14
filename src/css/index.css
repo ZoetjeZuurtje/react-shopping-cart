@@ -1,0 +1,9 @@
+:root {
+  --primary-color: white;
+  --secondary-color: lightblue;
+  --accent-color: green;
+
+  --button-color: blue;
+  --button-text-color: white;
+  --delete-button: rgb(90, 0, 0);
+}

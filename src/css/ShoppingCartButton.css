@@ -4,7 +4,7 @@
 
 #shopping-cart-popup {
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 0;
   width: 400px;
   background-color: white;
@@ -20,11 +20,25 @@
 #shopping-cart-popup > .shopping-cart-item > img {
   height: 3rem;
 }
-#shopping-cart-popup > .shopping-cart-item > input {
+#shopping-cart-popup > .shopping-cart-item input {
   width: 3rem;
 }
 #shopping-cart-popup > .shopping-cart-item {
+  
+  justify-content: space-between;
   display: flex;
   align-items: center;
   height: fit-content;
+  & > div {
+    display: flex;
+  }
+}
+
+.checkout-link {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  padding: 0.5em;
+  display: block;
+  margin-left: auto;
+  width: fit-content;
 }

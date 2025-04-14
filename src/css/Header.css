@@ -1,8 +1,17 @@
 header {
+  box-sizing: border-box;
   grid-area: header;
   border-bottom: black solid 1px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+}
+
+header button {
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  padding: 1em;
 }
