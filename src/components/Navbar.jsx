@@ -1,6 +1,6 @@
 import '../css/SearchBar.css'
 
-function SearchBar() {
+function Navbar() {
 
   return (
     <div className={'search-bar'}>
@@ -12,4 +12,4 @@ function SearchBar() {
   )
 }
 
-export default SearchBar;
+export default Navbar;
