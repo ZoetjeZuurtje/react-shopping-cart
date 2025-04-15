@@ -1,0 +1,42 @@
+
+
+.infinite-carousel {
+  background-image: linear-gradient(black, blue);
+}
+.infinite-carousel::before,
+.infinite-carousel::after {
+  content: '';
+  display: block;
+  z-index: 10;
+  height: 400px;
+  width: 100px;
+}
+.infinite-carousel::before {
+  position: absolute;
+  right: 0;
+  background-image: linear-gradient(-90deg, white, white, transparent);
+}
+.infinite-carousel::after {
+  position: absolute;
+  left: 0;
+  background-image: linear-gradient(90deg, white, white, transparent);
+}
+
+.carousel-item {
+  --carousel-item-width: 600px;
+  --carousel-length: 6;
+  --carousel-duration: 10s;
+  position: absolute;
+  right: calc(var(--carousel-item-width) * -1);
+  width: var(--carousel-item-width);
+  height: 400px;
+  animation: scroll infinite var(--carousel-duration) linear;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+}
+
+@keyframes scroll {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(calc(var(--carousel-item-width) * var(--carousel-length) * -1)) }
+} 

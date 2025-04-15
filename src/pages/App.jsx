@@ -1,4 +1,3 @@
-import logo from '/vite.svg'
 import '../css/App.css'
 import '../css/Header.css'
 import '../css/ShopItem.css'
@@ -6,9 +5,7 @@ import '../css/Shop.css'
 import { useEffect, useState } from 'react'
 
 import ShopItem from '../components/ShopItem'
-import SearchBar from '../components/SearchBar'
-import ShoppingCartButton from '../components/ShoppingCartButton'
-import { Link } from 'react-router-dom'
+import Header from '../components/Header'
 
 
 function App() {
@@ -57,12 +54,13 @@ function App() {
   }, [])
 
   return (
-    <>
-      <header>
-        <Link to={'/'}><img src={logo} alt={'Back to home'} /></Link>
-        <SearchBar />
-        <ShoppingCartButton shoppingCart={shoppingCart} removerFunction={createRemoveThisFromCart} modifierFunction={createModifyThisFromCart} />
-      </header>
+    <div id='shop-page'>
+      <Header
+        showShoppingCart={true}
+        shoppingCart={shoppingCart}
+        createRemoveThisFromCart={createRemoveThisFromCart}
+        createModifyThisFromCart={createModifyThisFromCart}
+      ></Header>
       <aside>
         <div className='filter'>
           <label htmlFor="price-range-min">
@@ -100,7 +98,7 @@ function App() {
             />))
         }
       </main>
-    </>
+    </div>
   )
 }
 

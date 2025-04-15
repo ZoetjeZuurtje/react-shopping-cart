@@ -9,9 +9,6 @@
   width: 400px;
   background-color: white;
   overflow: hidden;
-  &.hidden {
-    visibility: hidden;  
-  }
 }
 
 .shopping-cart-item + .shopping-cart-item {

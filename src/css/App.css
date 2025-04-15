@@ -1,4 +1,4 @@
-#root {
+#shop-page {
   display: grid;
   grid-template-areas:
     "header header"

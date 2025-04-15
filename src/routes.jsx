@@ -1,5 +1,5 @@
 import App from './pages/App.jsx';
-import ShoppingCart from './pages/ShoppingCart.jsx';
+import HomePage from './pages/HomePage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 
 const routes = [
@@ -9,8 +9,8 @@ const routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: 'checkout',
-    element: <ShoppingCart />,
+    path: 'home',
+    element: <HomePage />,
   }
 ];
 

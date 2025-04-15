@@ -11,9 +11,10 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
   return (
     <div id={'shopping-cart-button'}>
       <button onClick={toggleExpanded}>🛒</button>
-      <div className={isExpanded ? 'hidden' : ''} id={'shopping-cart-popup'}>
-        {
-          shoppingCart.map(item => {
+      <div hidden={isExpanded ? false : true} id={'shopping-cart-popup'}>
+        {shoppingCart ?? false ? (
+          <>
+          {shoppingCart.map(item => {
             const removeFromCart = removerFunction(item);
             const updateQuantity = (event) => {
               if (event.target.value < 1) return // do nothing
@@ -30,8 +31,9 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
                 </div>
               </div>
             )
-          })
-        }
+          })}
+          </>
+        ) : (<></>)}
         <Link className={'checkout-link'} to={'checkout'}>-&gt; Go to checkout</Link>
       </div>
     </div>
@@ -40,7 +42,8 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
 
 ShoppingCartButton.propTypes = {
   shoppingCart: PropTypes.array,
-  removerFunction: PropTypes.func
+  removerFunction: PropTypes.func,
+  modifierFunction: PropTypes.func
 }
 
 export default ShoppingCartButton;

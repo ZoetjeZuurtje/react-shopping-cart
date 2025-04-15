@@ -1,0 +1,8 @@
+body {
+  --placeholder-color: lightgrey;
+}
+
+.top-banner {
+  display: flex;
+  justify-content: space-around;
+}
