@@ -1,14 +1,14 @@
 import '../css/SearchBar.css'
+import { Link } from 'react-router-dom'
 
-function Navbar() {
+function Navbar({ linkArray }) {
 
   return (
-    <div className={'search-bar'}>
-      <label htmlFor={'search-bar'}>
-        <input type={'search'} name={'search-bar'} placeholder={'Zoeken naar...'} />
-        <span>🔍</span>
-      </label>
-    </div>
+    <nav>
+      <ul>
+        {linkArray.map(link => <Link key={link.key} to={link.to} style={{margin: '0 0.5em'}}>{link.name}</Link>)}
+      </ul>
+    </nav>
   )
 }
 
