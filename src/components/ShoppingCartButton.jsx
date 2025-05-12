@@ -12,6 +12,7 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
   {shoppingCart?.map(item => {
     const removeFromCart = removerFunction(item);
     const updateQuantity = (event) => {
+      console.log(event.target.value);
       if (event.target.value < 1) return // do nothing
       
       return modifierFunction(item)('quantity')(event.target.value)
@@ -29,12 +30,22 @@ function ShoppingCartButton({ shoppingCart, removerFunction, modifierFunction })
   })}
   </>;
 
+  const emptyShoppingCartElement = <div>
+    <h1>Your shopping cart is empty!</h1>
+    <p>Luckily you can click on some buttons to change that.</p>
+  </div>
+
   return (
     <div id={'shopping-cart-button'}>
       <button onClick={toggleExpanded}>🛒</button>
       <div hidden={isExpanded ? false : true} id={'shopping-cart-popup'}>
-        {shoppingCart ?? false ? shoppingCartList : <></>}
-        <Link className={'checkout-link'} to={'checkout'}>-&gt; Go to checkout</Link>
+        {
+          shoppingCart?.length === 0 ? emptyShoppingCartElement : shoppingCartList
+        }
+        {
+          shoppingCart?.length === 0 ? <></> : <Link className={'checkout-link'} to={'checkout'}>-&gt; Go to checkout</Link>
+        }
+        
       </div>
     </div>
   )

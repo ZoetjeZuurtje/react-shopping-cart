@@ -5,7 +5,7 @@ import logo from '/vite.svg';
 import '../css/Header.css';
 
 
-function Header({ showShoppingCart, shoppingCart, createRemoveThisFromCart, modifierFunction }) {
+function Header({ showShoppingCart, shoppingCart, createRemoveThisFromCart, createModifyThisFromCart }) {
 
   const links = [
     {
@@ -18,14 +18,14 @@ function Header({ showShoppingCart, shoppingCart, createRemoveThisFromCart, modi
       to: '/',
       key: crypto.randomUUID()
     }
-  ]
+  ];
 
   return (
     <header>
       <Link to={'/home'}><img src={logo} alt={'Back to home'} /></Link>
       <Navbar linkArray={links} />
       {
-      showShoppingCart ? <ShoppingCartButton shoppingCart={shoppingCart} removerFunction={createRemoveThisFromCart} modifierFunction={modifierFunction} /> : <div></div>
+      showShoppingCart ? <ShoppingCartButton shoppingCart={shoppingCart} removerFunction={createRemoveThisFromCart} modifierFunction={createModifyThisFromCart} /> : <div></div>
       }
     </header>
   )
